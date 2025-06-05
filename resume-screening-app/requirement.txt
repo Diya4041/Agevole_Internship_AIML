@@ -1,0 +1,12 @@
+streamlit==1.22.0
+pandas==1.5.3
+scikit-learn==1.2.2
+python-docx==0.8.11
+pdfplumber==0.9.0
+spacy==3.5.0
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
+numpy==1.24.3
+python-dateutil==2.8.2
+sqlite3==2.6.0
+firebase-admin==6.2.0
+python-dotenv==1.0.0
