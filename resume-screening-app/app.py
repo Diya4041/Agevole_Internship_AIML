@@ -210,16 +210,11 @@ def login_page():
                     else:
                         st.error("Invalid email or password")
 
-            st.markdown("""
-            <div style="text-align: center; margin-top: 20px;">
-                <p>Don't have an account? <a href="#" onclick="window.parent.document.querySelector('[data-testid=\'stButton\']').click()">Sign up</a></p>
-                <p><a href="#">Forgot password?</a></p>
-            </div>
-            """, unsafe_allow_html=True)
-
-            if st.button("Create Account", key="create_account_btn"):
+            st.markdown("<div style='text-align: center; margin-top: 20px;'></div>", unsafe_allow_html=True)
+            if st.button("Sign up for a new account"):
                 st.session_state.auth_page = 'signup'
                 st.rerun()
+            st.markdown("<div style='text-align: center; margin-top: 10px;'><a href='#'>Forgot password?</a></div>", unsafe_allow_html=True)
 
 def signup_page():
     st.markdown("<div class='header-title'>🚀 Create Your Account</div>", unsafe_allow_html=True)
@@ -309,9 +304,11 @@ def main_app():
         st.info("Upload PDF resumes and click 'Process Resumes' to start screening.")
 
     # Logout button
-    if st.button("Logout"):
+    if st.button("Logout", key="logout_btn"):
+        st.write("Logout button clicked!")
         firebase_auth.logout()
         st.session_state.auth_page = 'login'
+        st.session_state.results = None
         st.experimental_rerun()
 
 # --- Main entry point ---
@@ -321,8 +318,10 @@ def main():
         login_page()
     elif st.session_state.auth_page == 'signup':
         signup_page()
-    else:
+    elif st.session_state.auth_page == 'app':
         main_app()
+    else:
+        login_page()
 
 if __name__ == "__main__":
     main()
